@@ -25,7 +25,9 @@ const Slide = ({ image, text, p }) => {
                             {text}
                         </Fade>
                     </h1>
-                    <p className='md:text-2xl font-light text-white py-4 px-2 italic'>{p}</p>
+                    <p className='md:text-2xl font-light text-white py-4 px-2 italic'>
+                        {p}
+                    </p>
                 </div>
             </div>
         </div>
