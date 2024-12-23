@@ -5,6 +5,8 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home";
 import Allartifacts from "../pages/Allartifacts";
 import AddArtifacts from "../pages/AddArtifacts";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 
 const router = createBrowserRouter([
@@ -26,8 +28,12 @@ const router = createBrowserRouter([
                 element: <AddArtifacts></AddArtifacts>
             },
             {
-                path: "/",
-                element: <Home></Home>
+                path: "login",
+                element: <Login></Login>
+            },
+            {
+                path: "register",
+                element: <Register></Register>
             }
         ]
     }
