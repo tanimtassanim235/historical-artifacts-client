@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import Blog from '../components/Blog';
+import Extra from '../components/Extra';
 
 const Home = () => {
     return (
@@ -8,8 +9,11 @@ const Home = () => {
             {/* banner section */}
             <Banner></Banner>
             {/* extra section 01 */}
-            <section className='my-12'>
+            <section className='my-8'>
                 <Blog></Blog>
+            </section>
+            <section>
+                <Extra></Extra>
             </section>
         </div>
     );
