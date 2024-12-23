@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Logo and Description */}
                 <div>
-                    <h2 className="text-3xl font-bold text-white flex items-center">
+                    <h2 className="text-3xl font-bold  flex items-center bg-gradient-to-r from-[#3dbe85] via-[#e43db9] to-[#c8e356] text-transparent bg-clip-text">
                         Antike<span className="text-red-500">☥</span>i
                     </h2>
                     <p className="mt-4">
@@ -45,7 +45,7 @@ const Footer = () => {
 
                 {/* Information Links */}
                 <div>
-                    <h3 className="text-lg font-semibold text-white">Information</h3>
+                    <h3 className="text-lg font-semibold bg-gradient-to-r from-[#3dbe85] via-[#e43db9] to-[#c8e356] inline-block text-transparent bg-clip-text">Information</h3>
                     <div className="mt-4 space-y-2">
                         <a href="#" className="hover:text-yellow-500 ">
                             About
@@ -67,7 +67,7 @@ const Footer = () => {
 
                 {/* Recent Exhibition */}
                 <div>
-                    <h3 className="text-lg font-semibold text-white">Recent Exhibition</h3>
+                    <h3 className="text-lg font-semibold bg-gradient-to-r from-[#3dbe85] via-[#e43db9] to-[#c8e356] inline-block text-transparent bg-clip-text">Recent Exhibition</h3>
                     <div className="mt-4 space-y-6">
                         {/* Exhibition Item */}
                         <div className="flex space-x-4">

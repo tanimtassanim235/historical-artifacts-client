@@ -1,9 +1,9 @@
-import React from 'react';
-
 import hall from '../assets/over.jpg'
 import { Fade, Roll, Slide } from 'react-awesome-reveal';
 import { Typewriter } from 'react-simple-typewriter';
+
 const Extra = () => {
+
     return (
         <div>
             <div className="p-8 lg:p-16">

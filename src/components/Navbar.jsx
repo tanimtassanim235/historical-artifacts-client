@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/logo.jpg'
 const Navbar = () => {
     return (
@@ -22,11 +22,10 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li><a>Home</a></li>
-                            <li><a>All Artifacts</a></li>
-                            <li><a>Add Artifacts</a></li>
-                            <li><a>All Artifacts</a></li>
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[50] mt-3 w-52 p-2 shadow">
+                            <NavLink to="/" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Home</NavLink>
+                            <NavLink to="/all-artifacts" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>All Artifacts</NavLink>
+                            <NavLink to="/add-artifacts" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Add Artifacts</NavLink>
                         </ul>
                     </div>
                     <Link className="flex items-center justify-center gap-1">
@@ -36,16 +35,12 @@ const Navbar = () => {
                         <h3 className="font-semibold text-2xl">Antikei</h3>
                     </Link>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        <li><a>Home</a></li>
-                        <li><a>All Artifacts</a></li>
-                        <li><a>Add Artifacts</a></li>
-                        <li><a>All Artifacts</a></li>
+                <div className="navbar-end hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1 gap-9">
+                        <NavLink to="/" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Home</NavLink>
+                        <NavLink to="/all-artifacts" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>All Artifacts</NavLink>
+                        <NavLink to="/add-artifacts" className={({ isActive }) => `font-bold  text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Add Artifacts</NavLink>
                     </ul>
-                </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
                 </div>
             </div>
         </div>
