@@ -85,6 +85,7 @@ const Register = () => {
                     </div>
                     <div className="card w-full max-w-sm shrink-0 border-2 border-lime-200 bg-gradient-to-bl from-[#3dbe85] via-[#e43db9] to-[#c8e356]">
                         <form className="card-body" onSubmit={handleRegister}>
+                            <h3 className='text-xl font-bold mb-4 text-[#c3dcd1]'>Create An Account</h3>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>

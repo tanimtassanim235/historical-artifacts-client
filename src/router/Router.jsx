@@ -7,6 +7,7 @@ import Allartifacts from "../pages/Allartifacts";
 import AddArtifacts from "../pages/AddArtifacts";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ArtifactsDetails from "../pages/Artifacts/ArtifactsDetails";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Register></Register>
+            },
+            {
+                path: "/artifacts/:id",
+                element: <ArtifactsDetails></ArtifactsDetails>,
+                loader: ({ params }) => fetch(`http://localhost:4000/artifacts/${params.id}`)
             }
         ]
     }
