@@ -51,6 +51,7 @@ const Navbar = () => {
                             ?
                             (
                                 <>
+                                    <NavLink to="/my-artifacts" className={({ isActive }) => `font-bold mx-4 text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>My Artifacts</NavLink>
                                     <div className='size-14' title={user?.displayName}>
                                         <img className="w-14 rounded-3xl" src={`${user?.photoURL}`} alt="" />
                                     </div>

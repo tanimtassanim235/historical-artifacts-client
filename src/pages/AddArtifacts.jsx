@@ -92,13 +92,13 @@ const AddArtifacts = () => {
                                     <label className="label">
                                         <span className="label-text text-white">Artifacts Adder Name</span>
                                     </label>
-                                    <input type="text" name='adderName' defaultValue={user?.displayName} placeholder="Created At" className="input input-bordered" required />
+                                    <input type="text" name='adderName' defaultValue={user?.displayName} placeholder="Created At" className="input input-bordered" required readOnly />
                                 </div>
                                 <div className="form-control flex-1">
                                     <label className="label">
                                         <span className="label-text text-white">Artifacts Adder Email</span>
                                     </label>
-                                    <input type="text" defaultValue={user?.email} name='adderEmail' placeholder="Discovered At" className="input input-bordered" required />
+                                    <input type="text" defaultValue={user?.email} name='adderEmail' placeholder="Discovered At" className="input input-bordered" required readOnly />
                                 </div>
                             </div>
                             <div className='flex gap-4 '>
