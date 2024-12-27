@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Artifacts = ({ art }) => {
-    console.log(art);
     const { _id, name, image, currentLocation, artifactsType, context } = art
     return (
         <div>
