@@ -9,13 +9,14 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ArtifactsDetails from "../pages/Artifacts/ArtifactsDetails";
 import MyArtifacts from "../pages/MyArtifacts";
+import Error from "../pages/Error/Error";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement: <div>Hi 404</div>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: "/",
