@@ -5,10 +5,13 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import { FaLocationPin, FaPlaceOfWorship } from 'react-icons/fa6';
 import { FcEditImage } from 'react-icons/fc';
 import { LiaEdit } from 'react-icons/lia';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
     const { _id, name, image, artifactsType, createdAt, discoveredPlace, discoveredPerson, currentLocation, adderName, adderEmail, context } = singleArt;
+
+    const navigate = useNavigate();
 
     const handleDelete = _id => {
         Swal.fire({
@@ -34,6 +37,7 @@ const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
                                 text: "Your Added Artifacts has been deleted.",
                                 icon: "success"
                             });
+                            navigate('/all-artifacts')
                         }
                     })
             }

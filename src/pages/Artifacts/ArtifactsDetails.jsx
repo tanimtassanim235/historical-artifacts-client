@@ -23,15 +23,15 @@ const ArtifactsDetails = () => {
                         </div>
                         <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
                             <div class="pt-4">
-                                <dt class="font-medium text-gray-900">Current Location <FaMapLocationDot /></dt>
+                                <dt class="font-medium text-gray-900">Current Location </dt>
                                 <dd class="mt-2 text-sm text-gray-500">{currentLocation}</dd>
                             </div>
                             <div class="pt-4">
-                                <dt class="font-medium text-gray-900">Created At <IoTime /></dt>
+                                <dt class="font-medium text-gray-900">Created At</dt>
                                 <dd class="mt-2 text-sm text-gray-500">{createdAt}</dd>
                             </div>
                             <div class="pt-4">
-                                <dt class="font-medium text-gray-900">Discover Year <IoCreate /></dt>
+                                <dt class="font-medium text-gray-900">Discover Year </dt>
                                 <dd class="mt-2 text-sm text-gray-500">{discoveredPlace}</dd>
                             </div>
                             <div class="pt-4">
