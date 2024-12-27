@@ -21,26 +21,26 @@ const ArtifactsDetails = () => {
                             </button>
                             <p>Total Like: </p>
                         </div>
-                        <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+                        <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8 text-xl">
                             <div class="pt-4">
                                 <dt class="font-medium text-gray-900">Current Location </dt>
-                                <dd class="mt-2 text-sm text-gray-500">{currentLocation}</dd>
+                                <dd class="mt-2 text-base text-gray-500">{currentLocation}</dd>
                             </div>
                             <div class="pt-4">
                                 <dt class="font-medium text-gray-900">Created At</dt>
-                                <dd class="mt-2 text-sm text-gray-500">{createdAt}</dd>
+                                <dd class="mt-2 text-base text-gray-500">{createdAt}</dd>
                             </div>
                             <div class="pt-4">
                                 <dt class="font-medium text-gray-900">Discover Year </dt>
-                                <dd class="mt-2 text-sm text-gray-500">{discoveredPlace}</dd>
+                                <dd class="mt-2 text-base text-gray-500">{discoveredPlace}</dd>
                             </div>
                             <div class="pt-4">
                                 <dt class="font-medium text-gray-900">Discovered By</dt>
-                                <dd class="mt-2 text-sm text-gray-500">{discoveredPerson}</dd>
+                                <dd class="mt-2 text-base text-gray-500">{discoveredPerson}</dd>
                             </div>
                             <div class="pt-4">
                                 <dt class="font-medium text-gray-900">Type Of Artifact</dt>
-                                <dd class="mt-2 text-sm text-gray-500">{artifactsType}</dd>
+                                <dd class="mt-2 text-base text-gray-500">{artifactsType}</dd>
                             </div>
                         </dl>
                     </div>

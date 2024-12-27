@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             {
                 path: "my-artifacts",
                 element: <MyArtifacts></MyArtifacts>
-            }
+            },
         ]
     }
 ])
