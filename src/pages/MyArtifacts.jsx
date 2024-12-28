@@ -3,6 +3,7 @@ import MyAddedArtifacts from '../components/MyAddedArtifacts';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 
 const MyArtifacts = () => {
 
@@ -11,11 +12,16 @@ const MyArtifacts = () => {
     const navigate = useLocation()
 
     useEffect(() => {
-        fetch(`http://localhost:4000/histories?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setArt(data);
-            })
+        // fetch(`http://localhost:4000/histories?email=${user?.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setArt(data);
+        //     })
+
+        axios.get(`http://localhost:4000/histories?email=${user?.email}`, {
+            withCredentials: true
+        })
+            .then(res => setArt(res.data))
     }, [user?.email])
 
     return (

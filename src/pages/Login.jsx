@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa6';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 const Login = () => {
 
     const { googleSignIn, signIn, setUser } = useContext(AuthContext);
@@ -27,12 +28,15 @@ const Login = () => {
         signIn(email, password)
             .then((res) => {
                 const user = res.user;
-
                 setUser(user)
+                axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                    .then(data => {
+                        console.log(data);
+                    })
                 toast.success("Successfully Log in !", {
                     position: "top-center"
                 });
-                navigate(location?.state ? location.state : "/");
+                navigate(location?.state ? location?.state : "/");
             })
             .catch((error) => {
                 setErrorMessage(error.message);
@@ -47,10 +51,14 @@ const Login = () => {
             .then((res) => {
                 const user = res.user;
                 setUser(user)
+                axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                    .then(data => {
+                        console.log(data);
+                    })
                 toast.success("Successfully Log in With Google !", {
                     position: "top-center"
                 });
-                navigate(location?.state ? location.state : "/")
+                navigate(location?.state ? location?.state : "/")
             })
             .catch((error) => {
                 setErrorMessage(error.message);

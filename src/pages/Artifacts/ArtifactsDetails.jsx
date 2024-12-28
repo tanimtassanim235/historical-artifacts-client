@@ -8,48 +8,82 @@ import { Helmet } from 'react-helmet-async';
 const ArtifactsDetails = () => {
 
     const [detail, setDetails] = useState([])
+    const [liked, setLiked] = useState(false)
 
     const { id } = useParams();
 
     useEffect(() => {
         fetch(`http://localhost:4000/artifacts/${id}`)
             .then(res => res.json())
-            .then(data => setDetails(data))
-    }, [])
+            .then(data => {
+                setDetails(data)
+                // setLiked(false)
+            })
+    }, [id])
     // load dynamic data for single artifacts details 
     // const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, likeCount } = useLoaderData()
     const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, likeCount } = detail
 
     const { user } = useContext(AuthContext);
 
-    const [liked, setLiked] = useState(false)
 
+    // const [disliked, setDisliked] = useState(false)
     const navigate = useLocation();
-    console.log(navigate.pathname);
-    const handleLike = (id) => {
-        console.log('like button clicked', id);
-        // setLiked(!liked)
 
+    console.log(navigate.pathname);
+
+
+
+    const handleLike = (id) => {
+        // console.log('like button clicked', id);
+        // setLiked(!liked)
         const likedBlog = {
             art_id: id,
             liked_email: user.email
         }
 
-        fetch('http://localhost:4000/liked-arts', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(likedBlog)
-        })
-            .then(res => res.json())
-            .then(data => {
-                fetch(`http://localhost:4000/artifacts/${id}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        setDetails(data)
-                    })
+        // fetch('http://localhost:4000/liked-arts', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(likedBlog)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         fetch(`http://localhost:4000/artifacts/${id}`)
+        //             .then(res => res.json())
+        //             .then(data => {
+        //                 setDetails(data)
+        //                 setLiked(true);
+        //             })
+        //     })
+
+        if (liked) {
+            // Dislike logic (decrease like count)
+            fetch(`http://localhost:4000/liked-arts?art_id=${id}&liked_email=${user.email}`, {
+                method: 'DELETE',
             })
+                .then(res => res.json())
+                .then(data => {
+                    setLiked(false);
+                    setDetails(prev => ({ ...prev, likeCount: prev.likeCount - 1 }));
+                });
+        } else {
+            // Like logic (increase like count)
+            fetch('http://localhost:4000/liked-arts', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(likedBlog)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setLiked(true);
+                    setDetails(prev => ({ ...prev, likeCount: prev.likeCount + 1 }));
+                });
+        }
     }
     return (
         <div>
@@ -63,11 +97,18 @@ const ArtifactsDetails = () => {
                         <p class="mt-4 text-gray-500">{context}</p>
                         <div className='my-8 flex gap-4 items-center'>
                             <button className='px-4 py-3 bg-sky-700 rounded-xl text-xl text-white/80  hover:scale-125' onClick={() => handleLike(_id)}>
-                                {
+                                {/* {
                                     liked && <AiOutlineLike />
                                 }
                                 {
                                     !liked && <BiSolidDislike />
+                                } */}
+
+                                {
+                                    liked ?
+                                        <BiSolidDislike></BiSolidDislike>
+                                        :
+                                        <AiOutlineLike></AiOutlineLike>
                                 }
                             </button>
                             <p>Total Like: {likeCount}</p>

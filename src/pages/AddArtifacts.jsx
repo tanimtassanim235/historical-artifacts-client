@@ -23,7 +23,8 @@ const AddArtifacts = () => {
         const currentLocation = form.location.value;
         const adderName = form.adderName.value;
         const adderEmail = form.adderEmail.value;
-        const total = { name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, adderName, adderEmail }
+        const likeCount = 0;
+        const total = { name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, adderName, adderEmail, likeCount }
 
         console.log(total);
 

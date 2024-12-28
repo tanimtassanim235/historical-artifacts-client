@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaGoogle } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 const Register = () => {
 
     const { signUpUser, updateUserProfile, googleSignIn, setUser } = useContext(AuthContext);
@@ -39,10 +40,13 @@ const Register = () => {
                 console.log(user);
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(() => {
-                        // setUser({ displayName: name, photoURL: photo })
                         setUser((prev) => {
                             return { ...prev, displayName: name, photoURL: photo }
                         })
+                        axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                            .then(data => {
+                                console.log(data);
+                            })
                         toast.success("Successful Registered !", {
                             position: "top-center"
                         });
@@ -67,6 +71,10 @@ const Register = () => {
             .then((res) => {
                 const user = res.user;
                 setUser(user)
+                axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                    .then(data => {
+                        console.log(data);
+                    })
                 toast.success("Nice Sign Up with Google !", {
                     position: "top-right"
                 });
