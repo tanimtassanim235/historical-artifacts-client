@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlineLike } from 'react-icons/ai';
-import { FaMapLocationDot } from 'react-icons/fa6';
-import { IoCreate, IoTime } from 'react-icons/io5';
+import { BiSolidDislike } from 'react-icons/bi';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const ArtifactsDetails = () => {
     // load dynamic data for single artifacts details 
-    const { name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation } = useLoaderData()
-    console.log(name);
+    const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation } = useLoaderData()
+
+    const { user } = useContext(AuthContext);
+
+    const [liked, setLiked] = useState(false)
+
+    const handleLike = (id) => {
+        console.log('like button clicked', id);
+        // setLiked(!liked)
+
+        const likedBlog = {
+            art_id: id,
+            liked_email: user.email
+        }
+
+        fetch('http://localhost:4000/liked-arts', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(likedBlog)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
     return (
         <div>
             <div class="bg-white">
@@ -16,8 +41,13 @@ const ArtifactsDetails = () => {
                         <h2 class="text-3xl font-bold tracking-tight text-[#3E3B34] shadow-lime-200 shadow-sm  sm:text-4xl">{name}</h2>
                         <p class="mt-4 text-gray-500">{context}</p>
                         <div className='my-8 flex gap-4 items-center'>
-                            <button className='px-4 py-3 bg-sky-700 rounded-xl text-xl text-white/80  hover:scale-125'>
-                                <AiOutlineLike />
+                            <button className='px-4 py-3 bg-sky-700 rounded-xl text-xl text-white/80  hover:scale-125' onClick={() => handleLike(_id)}>
+                                {
+                                    liked && <AiOutlineLike />
+                                }
+                                {
+                                    !liked && <BiSolidDislike />
+                                }
                             </button>
                             <p>Total Like: </p>
                         </div>

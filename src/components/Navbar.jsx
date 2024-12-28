@@ -5,6 +5,8 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+
+    console.log(user?.photo);
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -52,8 +54,9 @@ const Navbar = () => {
                             (
                                 <>
                                     <NavLink to="/my-artifacts" className={({ isActive }) => `font-bold mx-4 text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>My Artifacts</NavLink>
+                                    <NavLink to="/liked-artifacts" className={({ isActive }) => `font-bold  text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>My Liked Artifacts</NavLink>
                                     <div className='size-14' title={user?.displayName}>
-                                        <img className="w-14 rounded-3xl" src={`${user?.photoURL}`} alt="" />
+                                        <img className="w-14 rounded-3xl" src={`${user?.photoURL}`} data-reference="no-reference" alt="" />
                                     </div>
                                     <button onClick={logOut} className="btn bg-gradient-to-r from-[#283c86] to-[#45a247]  text-white ml-2 rounded-xl">Log Out</button>
                                 </>

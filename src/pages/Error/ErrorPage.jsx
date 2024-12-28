@@ -2,10 +2,10 @@ import React from 'react';
 
 import '../Error/Error.css'
 
-import '../Error/Error.js'
+import './Error.js'
 
 
-const Error = () => {
+const ErrorPage = () => {
     return (
         <div>
             <a target="_blank" href="https://codepen.io/uiswarup/pen/XWGGyWQ">
@@ -332,4 +332,4 @@ const Error = () => {
     );
 };
 
-export default Error;
+export default ErrorPage;

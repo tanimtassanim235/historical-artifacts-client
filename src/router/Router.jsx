@@ -9,14 +9,15 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ArtifactsDetails from "../pages/Artifacts/ArtifactsDetails";
 import MyArtifacts from "../pages/MyArtifacts";
-import Error from "../pages/Error/Error";
+import ErrorPage from "../pages/Error/ErrorPage";
+import MylikedArt from "../pages/MylikedArt/MylikedArt";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement: <Error></Error>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: "my-artifacts",
                 element: <MyArtifacts></MyArtifacts>
+            },
+            {
+                path: "liked-artifacts",
+                element: <MylikedArt></MylikedArt>
             },
         ]
     }
