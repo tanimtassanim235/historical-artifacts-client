@@ -2,9 +2,10 @@ import Lottie from 'lottie-react';
 import React, { useContext, useState } from 'react';
 import registerLottie from '../assets/lottie/register.json'
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaGoogle } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 const Register = () => {
 
     const { signUpUser, updateUserProfile, googleSignIn, setUser } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Register = () => {
     const [error, setError] = useState({});
     const [errorMessage, setErrorMessage] = useState('');
 
-
+    const location = useLocation();
     // register functionality
     const handleRegister = e => {
         setErrorMessage('');
@@ -79,6 +80,9 @@ const Register = () => {
     return (
         <div>
             <div className="hero">
+                <Helmet>
+                    <title>{location.pathname}</title>
+                </Helmet>
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="text-center lg:text-left ">
                         <Lottie animationData={registerLottie} loop={true}></Lottie>

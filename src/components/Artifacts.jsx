@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Artifacts = ({ art }) => {
-    const { _id, name, image, currentLocation, artifactsType, context } = art
+    const { _id, name, image, artifactsType, context } = art
     return (
         <div>
             <div className="card bg-base-100  shadow-xl">

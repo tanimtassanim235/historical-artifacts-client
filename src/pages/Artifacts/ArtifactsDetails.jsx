@@ -1,17 +1,31 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BiSolidDislike } from 'react-icons/bi';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useLocation, useParams } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const ArtifactsDetails = () => {
+
+    const [detail, setDetails] = useState([])
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/artifacts/${id}`)
+            .then(res => res.json())
+            .then(data => setDetails(data))
+    }, [])
     // load dynamic data for single artifacts details 
-    const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation } = useLoaderData()
+    // const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, likeCount } = useLoaderData()
+    const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, likeCount } = detail
 
     const { user } = useContext(AuthContext);
 
     const [liked, setLiked] = useState(false)
 
+    const navigate = useLocation();
+    console.log(navigate.pathname);
     const handleLike = (id) => {
         console.log('like button clicked', id);
         // setLiked(!liked)
@@ -30,12 +44,19 @@ const ArtifactsDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                fetch(`http://localhost:4000/artifacts/${id}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        setDetails(data)
+                    })
             })
     }
     return (
         <div>
             <div class="bg-white">
+                <Helmet>
+                    <title>{navigate.pathname}</title>
+                </Helmet>
                 <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-16 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-1 lg:px-8">
                     <div>
                         <h2 class="text-3xl font-bold tracking-tight text-[#3E3B34] shadow-lime-200 shadow-sm  sm:text-4xl">{name}</h2>
@@ -49,7 +70,7 @@ const ArtifactsDetails = () => {
                                     !liked && <BiSolidDislike />
                                 }
                             </button>
-                            <p>Total Like: </p>
+                            <p>Total Like: {likeCount}</p>
                         </div>
                         <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8 text-xl">
                             <div class="pt-4">

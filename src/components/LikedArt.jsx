@@ -4,13 +4,13 @@ const LikedArt = ({ liked }) => {
     const { name, _id, image, createdAt, currentLocation, liked_email, artifactsType, context } = liked
     return (
         <div>
-            <div className="card bg-base-100 image-full w-full shadow-xl">
-                <figure>
+            <div className="card image-full">
+                <div>
                     <img
                         src={image}
                         alt={name}
-                        className='w-full object-cover h-[420px]' />
-                </figure>
+                        className='object-cover w-full h-[280px] rounded-xl' />
+                </div>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <p>{context.slice(0, 180)}...{""}</p>

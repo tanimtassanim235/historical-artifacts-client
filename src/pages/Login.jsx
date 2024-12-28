@@ -5,6 +5,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa6';
+import { Helmet } from 'react-helmet-async';
 const Login = () => {
 
     const { googleSignIn, signIn, setUser } = useContext(AuthContext);
@@ -59,6 +60,9 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>{location.pathname}</title>
+            </Helmet>
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="text-center lg:text-left w-1/2">

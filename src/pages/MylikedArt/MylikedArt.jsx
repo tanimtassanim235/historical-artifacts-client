@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import LikedArt from '../../components/LikedArt';
+import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const MylikedArt = () => {
 
     const [mylike, setMyLike] = useState([])
     const { user } = useContext(AuthContext)
     console.log(user?.email);
+
+    const location = useLocation()
 
     useEffect(() => {
         fetch(`http://localhost:4000/liked-art?email=${user?.email}`)
@@ -19,6 +23,9 @@ const MylikedArt = () => {
     console.log(mylike);
     return (
         <div className='my-10'>
+            <Helmet>
+                <title>{location.pathname}</title>
+            </Helmet>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 w-11/12 mx-auto'>
                 {
                     mylike.length === 0

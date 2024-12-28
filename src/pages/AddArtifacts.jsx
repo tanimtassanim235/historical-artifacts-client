@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 const AddArtifacts = () => {
 
     const { user } = useContext(AuthContext);
+    const navigate = useLocation()
 
     const AddArtifactsForm = (e) => {
         e.preventDefault();
@@ -47,6 +50,9 @@ const AddArtifacts = () => {
     return (
         <div>
             <div className="my-10">
+                <Helmet>
+                    <title>{navigate.pathname}</title>
+                </Helmet>
                 <div className="bg-gradient-to-br from-[#3dbe85] via-[#e43db9] to-[#c8e356] py-10">
                     <div className="p-5 bg-transparent w-full max-w-4xl mx-auto shrink-0 shadow-2xl border-2 border-red-600 bg-gradient-to-br from-[#3dbe85] via-[#e43db9] to-[#c8e356]">
                         <h3 className='bg-gradient-to-tr from-[#88f7c5] via-[#f1a4de] to-[#e1fb70] text-transparent bg-clip-text text-2xl md:text-5xl py-3 text-center'>Add Artifacts</h3>

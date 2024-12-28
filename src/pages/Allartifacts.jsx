@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Artifacts from '../components/Artifacts';
+import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 const Allartifacts = () => {
 
     const [artifacts, setArtifacts] = useState([])
     const [search, setSearch] = useState("")
-
-    console.log(search);
+    const navigate = useLocation()
 
     useEffect(() => {
         fetch('http://localhost:4000/histories')
@@ -21,6 +22,9 @@ const Allartifacts = () => {
     }, [search])
     return (
         <div className='py-16 w-11/12 mx-auto'>
+            <Helmet>
+                <title>{navigate.pathname}</title>
+            </Helmet>
             <input
                 type="text"
                 placeholder="Search here"
