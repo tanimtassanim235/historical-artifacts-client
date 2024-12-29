@@ -6,10 +6,10 @@ const FeatureCard = ({ oneFeature }) => {
 
     return (
         <div>
-            <div className="card card-compact  shadow-xl">
+            <div className="card card-compact border-2  border-s-lime-400 border-r-red-400 hover:rounded-2xl hover:scale-110">
                 <div>
                     <img
-                        className='w-full h-[250px] object-cover'
+                        className='w-full h-[250px] object-cover rounded-lg'
                         src={image}
                         alt={name} />
                 </div>
@@ -17,8 +17,8 @@ const FeatureCard = ({ oneFeature }) => {
                     <h2 className="card-title">{name}</h2>
                     <p>{context.slice(0, 150)}...{""}
                     </p>
-                    <div className="card-actions justify-evenly">
-                        <Link to={`/artifacts/${_id}`} className="border-s-lime-400 border-r-red-400 border-t-purple-400 p-3 bg-lime-400 rounded-xl">View Details </Link>
+                    <div className="card-actions justify-evenly pt-3">
+                        <Link to={`/artifacts/${_id}`} className="border-s-lime-400 border-r-red-400 border-t-purple-400 p-3 bg-fuchsia-500 text-white rounded-xl">View Details </Link>
                         <button className='btn btn-success'>{likeCount}</button>
                     </div>
                 </div>

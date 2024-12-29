@@ -26,7 +26,6 @@ const AddArtifacts = () => {
         const likeCount = 0;
         const total = { name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, adderName, adderEmail, likeCount }
 
-        console.log(total);
 
         fetch('http://localhost:4000/history', {
             method: 'POST',
@@ -55,7 +54,7 @@ const AddArtifacts = () => {
                     <title>{navigate.pathname}</title>
                 </Helmet>
                 <div className="bg-gradient-to-br from-[#3dbe85] via-[#e43db9] to-[#c8e356] py-10">
-                    <div className="p-5 bg-transparent w-full max-w-4xl mx-auto shrink-0 shadow-2xl border-2 border-red-600 bg-gradient-to-br from-[#3dbe85] via-[#e43db9] to-[#c8e356]">
+                    <div className="p-5 bg-transparent w-full max-w-4xl mx-auto shrink-0 shadow-2xl border-t-2 border-sky-300 bg-gradient-to-br from-[#3dbe85] via-[#e43db9] to-[#c8e356]">
                         <h3 className='bg-gradient-to-tr from-[#88f7c5] via-[#f1a4de] to-[#e1fb70] text-transparent bg-clip-text text-2xl md:text-5xl py-3 text-center'>Add Artifacts</h3>
                         <form onSubmit={AddArtifactsForm}>
                             {/* first row */}

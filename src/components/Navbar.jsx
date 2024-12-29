@@ -52,12 +52,12 @@ const Navbar = () => {
                             </div>
                             <ul
                                 tabIndex={0}
-                                className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
+                                className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-400 rounded-box w-52'
                             >
                                 <li className='mt-2'>
                                     <button
                                         onClick={logOut}
-                                        className='bg-gray-200 block text-center'
+                                        className='bg-red-400 block text-center'
                                     >
                                         Logout
                                     </button>
@@ -72,7 +72,7 @@ const Navbar = () => {
                                 <div
                                     tabIndex={0}
                                     role='button'
-                                    className='btn btn-circle'
+                                    className='btn btn-circle bg-[#ACC8E5]'
                                 >
                                     <div className='w-10 rounded-full lg:rounded-none '>
                                         <p>My Profile</p>
@@ -80,7 +80,7 @@ const Navbar = () => {
                                 </div>
                                 <ul
                                     tabIndex={0}
-                                    className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
+                                    className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-sky-300 rounded-box w-52'
                                 >
                                     <li>
                                         <Link to='/my-artifacts' className='justify-between'>
