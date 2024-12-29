@@ -8,12 +8,15 @@ import { LiaEdit } from 'react-icons/lia';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
     const { _id, name, image, artifactsType, createdAt, discoveredPlace, discoveredPerson, currentLocation, adderName, adderEmail, context } = singleArt;
 
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
+
+    const axiosSecure = useAxiosSecure()
 
     const handleDelete = _id => {
         Swal.fire({
@@ -26,7 +29,7 @@ const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:4000/histories/${_id}`, {
+                fetch(`https://history-server-zeta.vercel.app/histories/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -42,6 +45,7 @@ const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
                             navigate('/all-artifacts')
                         }
                     })
+
             }
         });
     }
@@ -69,7 +73,7 @@ const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
 
 
         // send data to the server
-        fetch(`http://localhost:4000/histories/${_id}`, {
+        fetch(`https://history-server-zeta.vercel.app/histories/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -78,8 +82,8 @@ const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                fetch(`http://localhost:4000/histories?email=${user?.email}`)
+                // console.log(data);
+                fetch(`https://history-server-zeta.vercel.app/histories?email=${user?.email}`)
                     .then(res => res.json())
                     .then(data => {
                         setArt(data)
@@ -93,6 +97,22 @@ const MyAddedArtifacts = ({ singleArt, art, setArt }) => {
                     })
                 }
             })
+
+        // axiosSecure.put(`/histories/${_id}`, total)
+        //     .then((res) => {
+        //         axiosSecure.get(`histories?email=${user?.email}`)
+        //             .then((res) => {
+        //                 setArt(res.data)
+        //                 if (res.data.modifiedCount > 0) {
+        //                     Swal.fire({
+        //                         title: 'Updated',
+        //                         text: 'Artifact Updated Done',
+        //                         icon: 'success',
+        //                         confirmButtonText: 'Close'
+        //                     })
+        //                 }
+        //             })
+        //     })
     }
     return (
         <div>

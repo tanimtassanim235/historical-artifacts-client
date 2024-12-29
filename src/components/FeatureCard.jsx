@@ -6,7 +6,7 @@ const FeatureCard = ({ oneFeature }) => {
 
     return (
         <div>
-            <div className="card card-compact border-2  border-s-lime-400 border-r-red-400 hover:rounded-2xl hover:scale-110">
+            <div className="card card-compact border-2  border-s-lime-400 border-r-red-400 hover:rounded-box hover:scale-110">
                 <div>
                     <img
                         className='w-full h-[250px] object-cover rounded-lg'

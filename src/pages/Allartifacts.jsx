@@ -3,20 +3,17 @@ import Artifacts from '../components/Artifacts';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 
+
+
 const Allartifacts = () => {
 
     const [artifacts, setArtifacts] = useState([])
     const [search, setSearch] = useState("")
     const navigate = useLocation()
 
-    useEffect(() => {
-        fetch('http://localhost:4000/histories')
-            .then(res => res.json())
-            .then(data => setArtifacts(data))
-    }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:4000/histories?searchParams=${search}`)
+        fetch(`https://history-server-zeta.vercel.app/histories?searchParams=${search}`)
             .then(res => res.json())
             .then(data => setArtifacts(data))
     }, [search])

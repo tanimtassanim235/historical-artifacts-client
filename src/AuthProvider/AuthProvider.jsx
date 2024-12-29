@@ -47,21 +47,21 @@ const AuthProvider = ({ children }) => {
 
                 const user = { email: currentUser.email }
 
-                axios.post('http://localhost:4000/jwt', user, {
+                axios.post('https://history-server-zeta.vercel.app/jwt', user, {
                     withCredentials: true
                 })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         setWaiting(false)
                     })
             }
 
             else {
-                axios.post('http://localhost:4000/logout', {}, {
+                axios.post('https://history-server-zeta.vercel.app/logout', {}, {
                     withCredentials: true
                 })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         setWaiting(false)
                     })
             }

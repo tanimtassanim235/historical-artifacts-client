@@ -13,7 +13,7 @@ const LikedArt = ({ liked }) => {
                 </div>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
-                    <p>{context.slice(0, 180)}...{""}</p>
+                    <p>{context?.slice(0, 180)}...{""}</p>
                     <div className="card-actions justify-end">
                         <button className="btn btn-error">{artifactsType}</button>
                     </div>

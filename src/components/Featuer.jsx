@@ -8,7 +8,7 @@ const Featuer = () => {
     const [feature, setFeature] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/feature')
+        fetch('https://history-server-zeta.vercel.app/feature')
             .then(res => res.json())
             .then(data => setFeature(data))
     }, [])

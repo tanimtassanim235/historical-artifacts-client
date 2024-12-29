@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             {
                 path: "/artifacts/:id",
                 element: <PrivateRoute><ArtifactsDetails></ArtifactsDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:4000/artifacts/${params.id}`)
+                // loader: ({ params }) => fetch(`https://history-server-zeta.vercel.app/artifacts/${params.id}`)
             },
             {
                 path: "my-artifacts",

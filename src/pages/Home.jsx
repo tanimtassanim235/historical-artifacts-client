@@ -8,7 +8,7 @@ import Featuer from '../components/Featuer';
 
 const Home = () => {
     const navigate = useLocation()
-    console.log(navigate);
+    // console.log(navigate);
     return (
         <div className='w-11/12 mx-auto'>
             <Helmet>

@@ -25,7 +25,7 @@ const Register = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photo, email, password);
+        // console.log(name, photo, email, password);
 
         const passValidate = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
@@ -37,13 +37,13 @@ const Register = () => {
         signUpUser(email, password)
             .then((res) => {
                 const user = res.user;
-                console.log(user);
+                // console.log(user);
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(() => {
                         setUser((prev) => {
                             return { ...prev, displayName: name, photoURL: photo }
                         })
-                        axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                        axios.post('https://history-server-zeta.vercel.app/jwt', user, { withCredentials: true })
                             .then(data => {
                                 console.log(data);
                             })
@@ -71,9 +71,9 @@ const Register = () => {
             .then((res) => {
                 const user = res.user;
                 setUser(user)
-                axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                axios.post('https://history-server-zeta.vercel.app/jwt', user, { withCredentials: true })
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                     })
                 toast.success("Nice Sign Up with Google !", {
                     position: "top-right"

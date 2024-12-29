@@ -10,27 +10,27 @@ const MylikedArt = () => {
 
     const [mylike, setMyLike] = useState([])
     const { user } = useContext(AuthContext)
-    console.log(user?.email);
+    // console.log(user?.email);
 
     const location = useLocation()
 
     const axiosSecure = useAxiosSecure()
     useEffect(() => {
-        // fetch(`http://localhost:4000/liked-art?email=${user?.email}`)
+        // fetch(`https://history-server-zeta.vercel.app/liked-art?email=${user?.email}`)
         //     .then(res => res.json())
         //     .then(data => {
         //         setMyLike(data);
         //     })
 
-        // axios.get(`http://localhost:4000/liked-art?email=${user?.email}`, { withCredentials: true })
-        //     .then(res => setMyLike(res.data))
-
-        axiosSecure.get(`liked-art?email=${user?.email}`)
+        axios.get(`https://history-server-zeta.vercel.app/liked-art?email=${user?.email}`, { withCredentials: true })
             .then(res => setMyLike(res.data))
+
+        // axiosSecure.get(`/liked-art?email=${user?.email}`)
+        //     .then(res => setMyLike(res.data))
 
     }, [user?.email])
 
-    console.log(mylike);
+    // console.log(mylike);
     return (
         <div className='my-10'>
             <Helmet>

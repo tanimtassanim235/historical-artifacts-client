@@ -23,15 +23,15 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
+        // console.log(email, password);
 
         signIn(email, password)
             .then((res) => {
                 const user = res.user;
                 setUser(user)
-                axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                axios.post('https://history-server-zeta.vercel.app/jwt', user, { withCredentials: true })
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                     })
                 toast.success("Successfully Log in !", {
                     position: "top-center"
@@ -51,9 +51,9 @@ const Login = () => {
             .then((res) => {
                 const user = res.user;
                 setUser(user)
-                axios.post('http://localhost:4000/jwt', user, { withCredentials: true })
+                axios.post('https://history-server-zeta.vercel.app/jwt', user, { withCredentials: true })
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                     })
                 toast.success("Successfully Log in With Google !", {
                     position: "top-center"

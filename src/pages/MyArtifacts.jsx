@@ -15,19 +15,19 @@ const MyArtifacts = () => {
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        // fetch(`http://localhost:4000/histories?email=${user?.email}`)
+        // fetch(`https://history-server-zeta.vercel.app/histories?email=${user?.email}`)
         //     .then(res => res.json())
         //     .then(data => {
         //         setArt(data);
         //     })
 
-        // axios.get(`http://localhost:4000/histories?email=${user?.email}`, {
-        //     withCredentials: true
-        // })
-        //     .then(res => setArt(res.data))
+        axios.get(`https://history-server-zeta.vercel.app/histories?email=${user?.email}`, {
+            withCredentials: true
+        })
+            .then(res => setArt(res.data))
 
-        axiosSecure.get(`histories?email=${user?.email}`)
-            .then(res => setArt(res.data));
+        // axiosSecure.get(`histories?email=${user?.email}`)
+        //     .then(res => setArt(res.data));
 
 
     }, [user?.email])

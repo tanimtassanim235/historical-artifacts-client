@@ -7,30 +7,37 @@ import { Helmet } from 'react-helmet-async';
 
 const ArtifactsDetails = () => {
 
-    const [detail, setDetails] = useState([])
+    const [details, setDetails] = useState([])
     const [liked, setLiked] = useState(false)
 
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:4000/artifacts/${id}`)
+        fetch(`https://history-server-zeta.vercel.app/artifacts/${id}`)
             .then(res => res.json())
             .then(data => {
                 setDetails(data)
                 // setLiked(false)
+                // Check if the user has already liked this artifact
+                fetch(`https://history-server-zeta.vercel.app/liked-art?email=${user.email}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const isLiked = data.some(art => art.art_id === id);
+                        setLiked(isLiked);
+                        // Update state based on user preference
+                    });
             })
     }, [id])
+
     // load dynamic data for single artifacts details 
     // const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, likeCount } = useLoaderData()
-    const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, likeCount } = detail
+    const { _id, name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, likeCount } = details
 
     const { user } = useContext(AuthContext);
 
-
-    // const [disliked, setDisliked] = useState(false)
     const navigate = useLocation();
 
-    console.log(navigate.pathname);
+    // console.log(navigate.pathname);
 
 
 
@@ -42,7 +49,7 @@ const ArtifactsDetails = () => {
             liked_email: user.email
         }
 
-        // fetch('http://localhost:4000/liked-arts', {
+        // fetch('https://history-server-zeta.vercel.app/liked-arts', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'
@@ -51,7 +58,7 @@ const ArtifactsDetails = () => {
         // })
         //     .then(res => res.json())
         //     .then(data => {
-        //         fetch(`http://localhost:4000/artifacts/${id}`)
+        //         fetch(`https://history-server-zeta.vercel.app/artifacts/${id}`)
         //             .then(res => res.json())
         //             .then(data => {
         //                 setDetails(data)
@@ -61,7 +68,7 @@ const ArtifactsDetails = () => {
 
         if (liked) {
             // Dislike logic (decrease like count)
-            fetch(`http://localhost:4000/liked-arts?art_id=${id}&liked_email=${user.email}`, {
+            fetch(`https://history-server-zeta.vercel.app/liked-arts?art_id=${id}&liked_email=${user.email}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -71,7 +78,7 @@ const ArtifactsDetails = () => {
                 });
         } else {
             // Like logic (increase like count)
-            fetch('http://localhost:4000/liked-arts', {
+            fetch('https://history-server-zeta.vercel.app/liked-arts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

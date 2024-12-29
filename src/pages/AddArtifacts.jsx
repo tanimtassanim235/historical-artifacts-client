@@ -3,11 +3,14 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const AddArtifacts = () => {
 
     const { user } = useContext(AuthContext);
     const navigate = useLocation()
+
+    const axiosSecure = useAxiosSecure()
 
     const AddArtifactsForm = (e) => {
         e.preventDefault();
@@ -27,7 +30,7 @@ const AddArtifacts = () => {
         const total = { name, image, artifactsType, context, createdAt, discoveredPlace, discoveredPerson, currentLocation, adderName, adderEmail, likeCount }
 
 
-        fetch('http://localhost:4000/history', {
+        fetch('https://history-server-zeta.vercel.app/history', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -36,7 +39,7 @@ const AddArtifacts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Added',
@@ -46,6 +49,19 @@ const AddArtifacts = () => {
                     })
                 }
             })
+
+        // axiosSecure.post(`/history`, total)
+        //     .then((res) => {
+        //         if (res.data.insertedId) {
+        //             Swal.fire({
+        //                 title: 'Added',
+        //                 text: 'New Added Artifact Done',
+        //                 icon: 'success',
+        //                 confirmButtonText: 'Close'
+        //             })
+        //         }
+        //     })
+
     }
     return (
         <div>
