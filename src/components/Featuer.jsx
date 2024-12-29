@@ -19,8 +19,16 @@ const Featuer = () => {
                 }
             </div>
 
+            <button></button>
         </div>
     );
 };
 
 export default Featuer;
+
+/**
+ * 
+ * server ee query email er modee. verify token dilee all-artifacts page ee 404 show kore...
+2. added artifacts ee kivave token diye korboo.
+3. optional (keyboard ee space press korlee pore digit gula delete koyee jayy.)
+ */

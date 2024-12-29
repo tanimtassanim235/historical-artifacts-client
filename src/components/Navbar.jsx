@@ -9,65 +9,90 @@ const Navbar = () => {
     console.log(user?.photo);
     return (
         <div>
-            <div className="navbar bg-base-100">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[50] mt-3 w-52 p-2 shadow">
-                            <NavLink to="/" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Home</NavLink>
-                            <NavLink to="/all-artifacts" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>All Artifacts</NavLink>
-                            <NavLink to="/add-artifacts" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Add Artifacts</NavLink>
-                        </ul>
-                    </div>
-                    <Link className="flex items-center justify-center gap-1">
-                        <div>
-                            <img className="w-14" src={logo} alt="" />
-                        </div>
-                        <h3 className="font-semibold text-2xl">Antikei</h3>
+            <div className='navbar bg-base-100 shadow-sm container px-4 mx-auto'>
+                <div className='flex-1'>
+                    <Link to='/' className='flex gap-2 items-center'>
+                        <img className='w-auto h-7' src={logo} alt='' />
+                        <span className='font-bold'>Antike</span>
                     </Link>
                 </div>
-                <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 gap-9">
-                        <NavLink to="/" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Home</NavLink>
-                        <NavLink to="/all-artifacts" className={({ isActive }) => `font-bold text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>All Artifacts</NavLink>
-                        <NavLink to="/add-artifacts" className={({ isActive }) => `font-bold  text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>Add Artifacts</NavLink>
+                <div className='flex-none'>
+                    <ul className='menu menu-horizontal px-1'>
+                        <li>
+                            <Link to='/' className="ml-6">Home</Link>
+                        </li>
+                        <li>
+                            <Link to='/all-artifacts'>All Artifacts</Link>
+                        </li>
+                        <li>
+                            <Link to='/add-artifacts'>Add Artifacts</Link>
+                        </li>
+
+                        {!user && (
+                            <li>
+                                <Link to='/login'>Login</Link>
+                            </li>
+                        )}
                     </ul>
 
+                    {user && (
+                        <div className='dropdown dropdown-end z-50'>
+                            <div
+                                tabIndex={0}
+                                role='button'
+                                className='btn btn-ghost btn-circle avatar'
+                            >
+                                <div title={user?.displayName} className='w-10 rounded-full'>
+                                    <img
+                                        referrerPolicy='no-referrer'
+                                        alt='User Profile Photo'
+                                        src={user?.photoURL}
+                                    />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
+                            >
+                                <li className='mt-2'>
+                                    <button
+                                        onClick={logOut}
+                                        className='bg-gray-200 block text-center'
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
+
                     {
-                        user
-                            ?
-                            (
-                                <>
-                                    <NavLink to="/my-artifacts" className={({ isActive }) => `font-bold mx-4 text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>My Artifacts</NavLink>
-                                    <NavLink to="/liked-artifacts" className={({ isActive }) => `font-bold  text-lg ${isActive ? 'text-green-400/70' : 'hover:text-red-400'}`}>My Liked Artifacts</NavLink>
-                                    <div className='size-14' title={user?.displayName}>
-                                        <img className="w-14 rounded-3xl" src={`${user?.photoURL}`} data-reference="no-reference" alt="" />
+                        user && (
+                            <div className='dropdown dropdown-end z-50'>
+                                <div
+                                    tabIndex={0}
+                                    role='button'
+                                    className='btn btn-circle'
+                                >
+                                    <div className='w-10 rounded-full lg:rounded-none '>
+                                        <p>My Profile</p>
                                     </div>
-                                    <button onClick={logOut} className="btn bg-gradient-to-r from-[#283c86] to-[#45a247]  text-white ml-2 rounded-xl">Log Out</button>
-                                </>
-                            )
-                            :
-                            (
-                                <>
-                                    <Link to="/login" className='btn mr-5 bg-gradient-to-r from-[#283c86] to-[#45a247]  text-white'>Log In</Link>
-                                    <Link to="/register" className='btn bg-gradient-to-r from-[#f2f2] to-[#45a203]  text-white'>Register</Link>
-                                </>
-                            )
+                                </div>
+                                <ul
+                                    tabIndex={0}
+                                    className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
+                                >
+                                    <li>
+                                        <Link to='/my-artifacts' className='justify-between'>
+                                            My Artifacts
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to='/liked-artifacts'>Liked Artifacts</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        )
                     }
                 </div>
             </div>
