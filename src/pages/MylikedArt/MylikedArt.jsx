@@ -3,6 +3,8 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import LikedArt from '../../components/LikedArt';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MylikedArt = () => {
 
@@ -12,12 +14,20 @@ const MylikedArt = () => {
 
     const location = useLocation()
 
+    const axiosSecure = useAxiosSecure()
     useEffect(() => {
-        fetch(`http://localhost:4000/liked-art?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setMyLike(data);
-            })
+        // fetch(`http://localhost:4000/liked-art?email=${user?.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setMyLike(data);
+        //     })
+
+        // axios.get(`http://localhost:4000/liked-art?email=${user?.email}`, { withCredentials: true })
+        //     .then(res => setMyLike(res.data))
+
+        axiosSecure.get(`liked-art?email=${user?.email}`)
+            .then(res => setMyLike(res.data))
+
     }, [user?.email])
 
     console.log(mylike);

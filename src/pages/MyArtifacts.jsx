@@ -4,12 +4,15 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const MyArtifacts = () => {
 
     const [art, setArt] = useState([]);
     const { user } = useContext(AuthContext);
     const navigate = useLocation()
+
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         // fetch(`http://localhost:4000/histories?email=${user?.email}`)
@@ -18,10 +21,15 @@ const MyArtifacts = () => {
         //         setArt(data);
         //     })
 
-        axios.get(`http://localhost:4000/histories?email=${user?.email}`, {
-            withCredentials: true
-        })
-            .then(res => setArt(res.data))
+        // axios.get(`http://localhost:4000/histories?email=${user?.email}`, {
+        //     withCredentials: true
+        // })
+        //     .then(res => setArt(res.data))
+
+        axiosSecure.get(`histories?email=${user?.email}`)
+            .then(res => setArt(res.data));
+
+
     }, [user?.email])
 
     return (

@@ -4,6 +4,7 @@ import Blog from '../components/Blog';
 import Extra from '../components/Extra';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import Featuer from '../components/Featuer';
 
 const Home = () => {
     const navigate = useLocation()
@@ -16,6 +17,9 @@ const Home = () => {
             {/* banner section */}
             <Banner></Banner>
             {/* extra section 01 */}
+            <section>
+                <Featuer></Featuer>
+            </section>
             <section className='my-8'>
                 <Blog></Blog>
             </section>
