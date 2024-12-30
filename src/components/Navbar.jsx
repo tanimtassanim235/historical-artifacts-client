@@ -6,10 +6,10 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
-    console.log(user?.photo);
+    // console.log(user?.photo);
     return (
         <div>
-            <div className='navbar bg-base-100 shadow-sm container px-4 mx-auto'>
+            <div className='navbar bg-sky-300 shadow-sm container px-4 mx-auto'>
                 <div className='flex-1'>
                     <Link to='/' className='flex gap-2 items-center'>
                         <img className='w-auto h-7' src={logo} alt='' />
@@ -19,18 +19,18 @@ const Navbar = () => {
                 <div className='flex-none'>
                     <ul className='menu menu-horizontal px-1'>
                         <li>
-                            <Link to='/' className="ml-6">Home</Link>
+                            <NavLink to='/' className="ml-6">Home</NavLink>
                         </li>
                         <li>
-                            <Link to='/all-artifacts'>All Artifacts</Link>
+                            <NavLink to='/all-artifacts'>All Artifacts</NavLink>
                         </li>
                         <li>
-                            <Link to='/add-artifacts'>Add Artifacts</Link>
+                            <NavLink to='/add-artifacts'>Add Artifacts</NavLink>
                         </li>
 
                         {!user && (
                             <li>
-                                <Link to='/login'>Login</Link>
+                                <NavLink to='/login'>Login</NavLink>
                             </li>
                         )}
                     </ul>
@@ -83,12 +83,12 @@ const Navbar = () => {
                                     className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-sky-300 rounded-box w-52'
                                 >
                                     <li>
-                                        <Link to='/my-artifacts' className='justify-between'>
+                                        <NavLink to='/my-artifacts' className='justify-between'>
                                             My Artifacts
-                                        </Link>
+                                        </NavLink>
                                     </li>
                                     <li>
-                                        <Link to='/liked-artifacts'>Liked Artifacts</Link>
+                                        <NavLink to='/liked-artifacts'>Liked Artifacts</NavLink>
                                     </li>
                                 </ul>
                             </div>
